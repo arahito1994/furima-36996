@@ -26,7 +26,7 @@
 | Column       | Type        | Options                        |
 | ------------ | ----------- | ------------------------------ |
 | item_name    | string      | null: false                    |
-| item_text    | string      | null: false                    |
+| item_text    | text        | null: false                    |
 | user         | references  | null: false, foreign_key: true |
 | category_id  | integer     | null: false                    |
 | condition_id | integer     | null: false                    |
@@ -34,6 +34,7 @@
 | area_id      | integer     | null: false                    |
 | days_id      | integer     | null: false                    |
 | price        | integer     | null: false                    |
+
 
 
 ### Association
