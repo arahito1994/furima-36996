@@ -23,17 +23,17 @@
 
 ## items テーブル
 
-| Column    | Type        | Options                        |
-| --------- | ----------- | ------------------------------ |
-| item_name | string      | null: false                    |
-| item_text | string      | null: false                    |
-| user      | references  | null: false, foreign_key: true |
-| category  | string      | null: false                    |
-| condition | string      | null: false                    |
-| postage   | string      | null: false                    |
-| area      | string      | null: false                    |
-| days      | string      | null: false                    |
-| price     | integer     | null: false                    |
+| Column       | Type        | Options                        |
+| ------------ | ----------- | ------------------------------ |
+| item_name    | string      | null: false                    |
+| item_text    | string      | null: false                    |
+| user         | references  | null: false, foreign_key: true |
+| category_id  | integer     | null: false                    |
+| condition_id | integer     | null: false                    |
+| postage_id   | integer     | null: false                    |
+| area_id      | integer     | null: false                    |
+| days_id      | integer     | null: false                    |
+| price        | integer     | null: false                    |
 
 
 ### Association
@@ -50,20 +50,20 @@
 
 ### Association
 - belongs_to :user
-- belongs_to :address
+- has_one :address
 - belongs_to :item
 
 ## addresses テーブル
 
-| Column        | Type    | Options     |
-| ------------- | ------- | ----------- |
-| post_number   | integer | null: false |
-| prefectures   | string  | null: false |
-| city          | string  | null: false |
-| street_number | string  | null: false |
-| building      | string  |             |
-| telephone     | integer | null: false |
-
+| Column           | Type       | Options                        |
+| ---------------- | ---------- | ------------------------------ |
+| post_number      | string     | null: false                    |
+| prefectures_id   | integer    | null: false                    |
+| city             | string     | null: false                    |
+| street_number    | string     | null: false                    |
+| building         | string     |                                |
+| telephone        | string     | null: false                    |
+| record           | references | null: false, foreign_key: true |
 
 ### Association
-- has_one :record
+- belongs_to :record
