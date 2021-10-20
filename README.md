@@ -11,6 +11,8 @@
 | first_name         | string | null: false               |
 | last_name_kana     | string | null: false               |
 | first_name_kana    | string | null: false               |
+| birth_date         | date   | null: false               |
+
 
 
 
@@ -25,8 +27,13 @@
 | --------- | ----------- | ------------------------------ |
 | item_name | string      | null: false                    |
 | item_text | string      | null: false                    |
-| price     | integer     | null: false                    |
 | user      | references  | null: false, foreign_key: true |
+| category  | string      | null: false                    |
+| condition | string      | null: false                    |
+| postage   | string      | null: false                    |
+| area      | string      | null: false                    |
+| days      | string      | null: false                    |
+| price     | integer     | null: false                    |
 
 
 ### Association
@@ -39,23 +46,24 @@
 | Column | Type       | Options                        |
 | ------ | ---------- | ------------------------------ |
 | user   | references | null: false, foreign_key: true |
-
+| item   | references | null: false, foreign_key: true |
 
 ### Association
 - belongs_to :user
-- has_many addresses
-
+- belongs_to :address
+- belongs_to :item
 
 ## addresses テーブル
 
-| Column       | Type    | Options     |
-| ------------ | ------- | ----------- |
-|post_number   | integer | null: false |
-|city          | string  | null: false |
-|street_number | string  | null: false |
-|building      | string  | null: false |
-|telephone     | integer | null: false |
+| Column        | Type    | Options     |
+| ------------- | ------- | ----------- |
+| post_number   | integer | null: false |
+| prefectures   | string  | null: false |
+| city          | string  | null: false |
+| street_number | string  | null: false |
+| building      | string  |             |
+| telephone     | integer | null: false |
 
 
 ### Association
-- belongs_to :record
+- has_one :record
