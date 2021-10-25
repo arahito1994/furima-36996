@@ -1,17 +1,15 @@
 class Item < ApplicationRecord
 
-  has_one_attached :image
-
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :category_id
+  belongs_to :category
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :condition_id
+  belongs_to :condition
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :postage_id
+  belongs_to :postage
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :area_id
+  belongs_to :area
   extend ActiveHash::Associations::ActiveRecordExtensions
-  belongs_to :days_id
+  belongs_to :days
 
 
   validates :category_id, numericality: { other_than: 1 , message: "can't be blank" }
@@ -19,7 +17,7 @@ class Item < ApplicationRecord
   validates :postage_id, numericality: { other_than: 1 , message: "can't be blank" }
   validates :area_id, numericality: { other_than: 1 , message: "can't be blank" }
   validates :days_id, numericality: { other_than: 1 , message: "can't be blank" }
-  
+
   with_options presence: true do
     validates :image
     validates :item_name
@@ -31,5 +29,8 @@ class Item < ApplicationRecord
     validates :days_id
     validates :price, format: { with: /\A[0-9]+\z/ }
   end
+
+  has_one_attached :image
+  belongs_to :user
 
 end
