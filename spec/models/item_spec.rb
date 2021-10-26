@@ -20,62 +20,62 @@ RSpec.describe Item, type: :model do
       it 'item_nameが空では登録できない' do
         @item.item_name = ''
         @item.valid?
-        expect(@item.errors.full_messages). to include("Item name can't be blank")
+        expect(@item.errors.full_messages).to include("Item name can't be blank")
       end
       it 'item_textが空では登録できない' do
         @item.item_text = ''
         @item.valid?
-        expect(@item.errors.full_messages). to include("Item text can't be blank")
+        expect(@item.errors.full_messages).to include("Item text can't be blank")
       end
       it 'category_idの値を選択しない場合は登録できない' do
         @item.category_id = 1
         @item.valid?
-        expect(@item.errors.full_messages). to include("Category can't be blank")
+        expect(@item.errors.full_messages).to include("Category can't be blank")
       end
       it 'condition_idの値を選択しない場合は登録できない' do
         @item.condition_id = 1
         @item.valid?
-        expect(@item.errors.full_messages). to include("Condition can't be blank")
+        expect(@item.errors.full_messages).to include("Condition can't be blank")
       end
       it 'postage_idの値を選択しない場合は登録できない' do
         @item.postage_id = 1
         @item.valid?
-        expect(@item.errors.full_messages). to include("Postage can't be blank")
+        expect(@item.errors.full_messages).to include("Postage can't be blank")
       end
       it 'area_idの値を選択しない場合は登録できない' do
         @item.area_id = 1
         @item.valid?
-        expect(@item.errors.full_messages). to include("Area can't be blank")
+        expect(@item.errors.full_messages).to include("Area can't be blank")
       end
       it 'days_idの値を選択しない場合は登録できない' do
         @item.days_id = 1
         @item.valid?
-        expect(@item.errors.full_messages). to include("Days can't be blank")
+        expect(@item.errors.full_messages).to include("Days can't be blank")
       end
       it 'priceが空では登録できない' do
         @item.price = ''
         @item.valid?
-        expect(@item.errors.full_messages). to include("Price can't be blank")
+        expect(@item.errors.full_messages).to include("Price can't be blank")
       end
       it 'priceが全角数字では登録できない' do
         @item.price = '５００'
         @item.valid?
-        expect(@item.errors.full_messages). to include("Price is invalid")
+        expect(@item.errors.full_messages).to include('Price is invalid')
       end
       it 'priceが299円以下だと登録できない' do
         @item.price = '299'
         @item.valid?
-        expect(@item.errors.full_messages). to include("Price is invalid")
+        expect(@item.errors.full_messages).to include('Price is invalid')
       end
       it 'priceが10,000,000円以上では登録できない' do
         @item.price = '10_000_000'
         @item.valid?
-        expect(@item.errors.full_messages). to include("Price is invalid")
+        expect(@item.errors.full_messages).to include('Price is invalid')
       end
       it 'userが紐づいていないと登録できない' do
         @item.user = nil
         @item.valid?
-        expect(@item.errors.full_messages). to include("User must exist")
+        expect(@item.errors.full_messages).to include('User must exist')
       end
     end
   end

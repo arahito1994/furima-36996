@@ -1,7 +1,5 @@
 FactoryBot.define do
   factory :item do
-    
-
     item_name          { '商品名' }
     item_text          { Faker::Lorem.sentence }
     category_id        { 2 }
@@ -15,5 +13,5 @@ FactoryBot.define do
     after(:build) do |items|
       items.image.attach(io: File.open('public/images/test_image.png'), filename: 'test_image.png')
     end
-  end 
+  end
 end
