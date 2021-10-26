@@ -27,28 +27,28 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages). to include("Item text can't be blank")
       end
-      it 'category_idが空では登録できない' do
-        @item.category_id = ''
+      it 'category_idの値を選択しない場合は登録できない' do
+        @item.category_id = 1
         @item.valid?
         expect(@item.errors.full_messages). to include("Category can't be blank")
       end
-      it 'condition_idが空では登録できない' do
-        @item.condition_id = ''
+      it 'condition_idの値を選択しない場合は登録できない' do
+        @item.condition_id = 1
         @item.valid?
         expect(@item.errors.full_messages). to include("Condition can't be blank")
       end
-      it 'postage_idが空では登録できない' do
-        @item.postage_id = ''
+      it 'postage_idの値を選択しない場合は登録できない' do
+        @item.postage_id = 1
         @item.valid?
         expect(@item.errors.full_messages). to include("Postage can't be blank")
       end
-      it 'area_idが空では登録できない' do
-        @item.area_id = ''
+      it 'area_idの値を選択しない場合は登録できない' do
+        @item.area_id = 1
         @item.valid?
         expect(@item.errors.full_messages). to include("Area can't be blank")
       end
-      it 'days_idが空では登録できない' do
-        @item.days_id = ''
+      it 'days_idの値を選択しない場合は登録できない' do
+        @item.days_id = 1
         @item.valid?
         expect(@item.errors.full_messages). to include("Days can't be blank")
       end
@@ -71,6 +71,11 @@ RSpec.describe Item, type: :model do
         @item.price = '10_000_000'
         @item.valid?
         expect(@item.errors.full_messages). to include("Price is invalid")
+      end
+      it 'userが紐づいていないと登録できない' do
+        @item.user = nil
+        @item.valid?
+        expect(@item.errors.full_messages). to include("User must exist")
       end
     end
   end
