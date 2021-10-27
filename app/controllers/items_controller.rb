@@ -23,10 +23,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    unless current_user == @item.user
-      redirect_to action: :index
-    end
-    
+    redirect_to action: :index unless current_user == @item.user
   end
 
   def update
@@ -35,7 +32,6 @@ class ItemsController < ApplicationController
     else
       render :edit
     end
-
   end
 
   private
