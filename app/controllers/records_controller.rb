@@ -1,23 +1,14 @@
 class RecordsController < ApplicationController
+  before_action :set_record_address, only: [:index, :create]
 
   def index
     @record_address = RecordAddress.new
-    @item = Item.new
-    @item = Item.find(params[:item_id])
-
   end
 
   def create
     @record_address = RecordAddress.new(record_params)
-    @item = Item.new
-    @item = Item.find(params[:item_id])
     if @record_address.valid?
-      Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: record_params[:token],
-        currency: 'jpy'
-      )
+      pay_item
       @record_address.save
       redirect_to root_path
     else
@@ -29,6 +20,19 @@ class RecordsController < ApplicationController
 
   def record_params
     params.require(:record_address).permit(:post_number, :area_id, :city, :street_number, :building, :telephone).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+  end
+
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+      Payjp::Charge.create(
+        amount: @item.price,
+        card: record_params[:token],
+        currency: 'jpy'
+      )
+  end
+
+  def set_record_address
+    @item = Item.find(params[:item_id])
   end
 
 
