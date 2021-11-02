@@ -1,5 +1,7 @@
 class RecordsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_record_address, only: [:index, :create]
+  before_action :contributor_confirmation, only: [:index, :create]
 
   def index
     @record_address = RecordAddress.new
@@ -33,6 +35,10 @@ class RecordsController < ApplicationController
 
   def set_record_address
     @item = Item.find(params[:item_id])
+  end
+
+  def contributor_confirmation
+    redirect_to root_path if current_user == @item.user || @item.record.present?
   end
 
 
