@@ -11,7 +11,7 @@ class RecordAddress
     validates :city
     validates :street_number
     validates :telephone,
-              format: { with: /\A[0-9]+\z/, greater_than_or_equal_to: 10, less_than_or_equal_to: 11, message: 'is invalid' }
+              format: { with: /\A\d{10,11}\z/, message: 'is invalid' }
   end
 
   def save
