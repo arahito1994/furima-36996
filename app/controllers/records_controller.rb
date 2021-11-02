@@ -21,16 +21,18 @@ class RecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:record_address).permit(:post_number, :area_id, :city, :street_number, :building, :telephone).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
+    params.require(:record_address).permit(:post_number, :area_id, :city, :street_number, :building, :telephone).merge(
+      user_id: current_user.id, item_id: params[:item_id], token: params[:token]
+    )
   end
 
   def pay_item
-    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
-      Payjp::Charge.create(
-        amount: @item.price,
-        card: record_params[:token],
-        currency: 'jpy'
-      )
+    Payjp.api_key = ENV['PAYJP_SECRET_KEY']
+    Payjp::Charge.create(
+      amount: @item.price,
+      card: record_params[:token],
+      currency: 'jpy'
+    )
   end
 
   def set_record_address
@@ -40,6 +42,4 @@ class RecordsController < ApplicationController
   def contributor_confirmation
     redirect_to root_path if current_user == @item.user || @item.record.present?
   end
-
-
 end

@@ -10,7 +10,6 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :record
 
-
   with_options numericality: { other_than: 1, message: "can't be blank" } do
     validates :category_id
     validates :condition_id
@@ -30,6 +29,4 @@ class Item < ApplicationRecord
     validates :days_id
     validates :price, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999, message: 'is invalid' }
   end
-
-  
 end
